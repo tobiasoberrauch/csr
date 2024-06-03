@@ -8,9 +8,25 @@ import os
 
 load_dotenv()
 
-client = OpenAI()
+def get_openai_key():
+    """
+    Get OpenAI API key either from environment variables or Streamlit secrets.
+    """
+    # Try to get the API key from Streamlit secrets
+    openai_key = st.secrets.get("openai_api_key")
+    
+    # If not found in Streamlit secrets, try to get it from environment variables
+    if not openai_key:
+        openai_key = os.getenv("OPENAI_API_KEY")
+        
+    # Raise an error if the API key is not found in either source
+    if not openai_key:
+        raise ValueError("OpenAI API key not found. Please set it in Streamlit secrets or as an environment variable.")
+    
+    return openai_key
 
-# OpenAI API-Key eingeben
+
+client = OpenAI(api_key=get_openai_key())
 
 st.title("CSRD-Datenpunkte Zuordnung")
 
