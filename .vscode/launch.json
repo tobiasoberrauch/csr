@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Streamlit current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/opt/anaconda3/envs/csr/bin/streamlit run ${file}"
+        }
+    ]
+}
