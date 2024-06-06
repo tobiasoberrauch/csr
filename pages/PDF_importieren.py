@@ -11,6 +11,7 @@ st.markdown(
     ## CSRD-Datenpunkte Zuordnung
 """
 )
+pytesseract.pytesseract.tesseract_cmd = None
 
 LANGUAGE = "deu"
 
