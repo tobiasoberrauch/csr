@@ -4,4 +4,3 @@ PyPDF2
 pdfminer
 pdf2image
 pytesseract
-poppler-utils
