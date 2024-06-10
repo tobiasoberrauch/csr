@@ -4,14 +4,13 @@ from PIL import Image
 
 from functions import api_request, displayPDF, images_to_txt
 
-st.set_page_config(page_title="PDF importieren")
+st.set_page_config(page_title="PDF analysieren")
 
 st.markdown(
     """
     ## CSRD-Datenpunkte Zuordnung
 """
 )
-pytesseract.pytesseract.tesseract_cmd = None
 
 LANGUAGE = "deu"
 

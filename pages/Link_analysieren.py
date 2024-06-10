@@ -2,7 +2,7 @@ import streamlit as st
 
 from functions import api_request
 
-st.set_page_config(page_title="Link importieren")
+st.set_page_config(page_title="Link analysieren")
 
 st.markdown(
     """

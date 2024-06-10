@@ -1,18 +1,18 @@
-import streamlit as st
-from zipfile import ZipFile
-from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
-from pdfminer.converter import TextConverter
-from pdfminer.layout import LAParams
-from pdfminer.pdfpage import PDFPage
-from io import StringIO
 import base64
+import logging
+from io import StringIO
+from zipfile import ZipFile
 
 # ------- OCR ------------
 import pdf2image
 import pytesseract
-from pytesseract import Output, TesseractError
-
+import streamlit as st
 from openai import OpenAI
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from pdfminer.pdfinterp import PDFPageInterpreter, PDFResourceManager
+from pdfminer.pdfpage import PDFPage
+from pytesseract import Output, TesseractError
 
 client = OpenAI(api_key=st.secrets.get("openai_api_key"))
 
@@ -138,12 +138,14 @@ system_prompt = f"""
 
 
 def api_request(text):
-  response = client.chat.completions.create(
-      model="gpt-3.5-turbo",
-      messages=[
-          {"role": "system", "content": system_prompt},
-          {"role": "user", "content": f"{text} Bitte immer deutsch antworten"},
-      ],
-      temperature=0.0,
-  )
-  return response
+    logging.info('Request', text)
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": f"{text} Bitte immer deutsch antworten"},
+        ],
+        temperature=0.0,
+    )
+    logging.info('Response', response)
+    return response
