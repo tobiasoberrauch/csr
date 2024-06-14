@@ -128,17 +128,17 @@ system_prompt = f"""
     Bitte immer deutsch antworten.
     Bitte als Tabelle ausgeben:
 
-    | Datenpunkt | Zitat aus dem Text oder dem Link | Warum passt der Datenpunkt zur Passage? | 
+    | Datenpunkt | Datenpunkt Beschreibung | Zitat aus dem Text oder dem Link | Warum passt der Datenpunkt zur Passage? | 
     |------------------|---------------------------------------------|---------------------------------------------|
-    | ESRS 2 MDR-x nnx | ... | ... |
-    | ESRS 2 MDR-x nnx | ... | ... |
+    | ESRS 2 MDR-x nnx: Name von Datenpunkt Tabelle | ...  | ... | ... |
+    | ESRS 2 MDR-x nnx: Name von Datenpunkt Tabelle | ...   | ... | ... |
 
     {datapoints_content}
 """
 
 
 def api_request(text):
-    logging.info('Request', text)
+    logging.info("Request", text)
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -147,5 +147,5 @@ def api_request(text):
         ],
         temperature=0.0,
     )
-    logging.info('Response', response)
+    logging.info("Response", response)
     return response
